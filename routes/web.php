@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/info', function () {
-   return view('info');
+Route::group(['prefix' => 'news'], function () {
+    Route::get('/', 'NewsController@showCategories')->name('news.categories');
+    Route::get('{category}/', 'NewsController@showAllFromCategory')->name('news.category');
+    Route::get('{category}/{id}', 'NewsController@showDetail')->name('news.category.id');
 });
 
-Route::get('/news', function () {
-    return view('news');
-});
+Route::post('auth', 'AuthController@auth');
+
+
+
