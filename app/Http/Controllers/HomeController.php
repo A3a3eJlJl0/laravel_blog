@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function test()
+    public function showWelcome()
     {
-        return $this->getNewsDbData();
+        return view('welcome');
     }
-
 }

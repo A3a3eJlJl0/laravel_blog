@@ -20,4 +20,14 @@ class NewsController extends Controller
     {
         return view('news.detail', ['news' => self::getNewsDbData(), 'currentCategory' => $category, 'id' => $id]);
     }
+
+    public function showAddForm()
+    {
+        return view('news.add');
+    }
+
+    public function add()
+    {
+
+    }
 }
