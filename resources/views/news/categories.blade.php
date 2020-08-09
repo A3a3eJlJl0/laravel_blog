@@ -1,12 +1,22 @@
-<h1>Категории новостей</h1>
-<ul>
+@extends('main')
+
+@section('title')
+    categories
+@endsection
+
+@section('header')
+    Топ категорий
+@endsection
+
+@section('content')
+    <div class="category-list">
     @foreach($news as $category => $value)
-        <li>
-            <h2>
-                <a href="{{route('news.category', $category)}}">
-                    {{$category}}
-                </a>
-            </h2>
-        </li>
+        <figure class="container-fluid">
+            <a class="category-caption" href="{{ route('news.category', $category) }}">
+                <img class="img-fluid category-img" src="{{ asset('img/' . $category . '.jpg') }}" alt="{{ $category }}">
+                <figcaption> {{ \App\Helpers\NewsHelper::translateCategory($category) }} </figcaption>
+            </a>
+        </figure>
     @endforeach
-</ul>
+    </div>
+@endsection
