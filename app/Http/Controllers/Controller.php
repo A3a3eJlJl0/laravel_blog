@@ -14,26 +14,26 @@ class Controller extends BaseController
     public static function getNewsDbData(): array
     {
         return [
-            'films' => self::getNewsByCategory('/resources/news/films'),
-            'travel' => self::getNewsByCategory('/resources/news/travel'),
-            'science' => self::getNewsByCategory('/resources/news/science'),
-            'technology' => self::getNewsByCategory('/resources/news/tech'),
-            'sport' => self::getNewsByCategory('/resources/news/sport'),
+            'films' => self::getNewsByCategory('films'),
+            'travel' => self::getNewsByCategory('travel'),
+            'science' => self::getNewsByCategory('science'),
+            'technology' => self::getNewsByCategory('tech'),
+            'sport' => self::getNewsByCategory('sport'),
         ];
     }
 
-    private static function getNewsByCategory($categoryPathInProject)
+    private static function getNewsByCategory($category)
     {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/..' . $categoryPathInProject;
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/../resources/news/' . $category;
         $categoryFiles = scandir($path);
         $categoryFiles = array_filter($categoryFiles, function ($el) {
             return !is_dir($el);
         });
 
         foreach ($categoryFiles as $categoryFile) {
-            $category[] = file_get_contents($path . '/' . $categoryFile);
+            $categoryNews[] = file_get_contents($path . '/' . $categoryFile);
         }
 
-        return $category;
+        return $categoryNews;
     }
 }
