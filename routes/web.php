@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@showWelcome')->name('welcome');
+Route::get('/request', 'HomeController@showDataUploadRequestForm')->name('data.upload.request.form');
+Route::post('/request', 'HomeController@showDataUploadRequest')->name('data.upload.request');
 
 Route::group(['prefix' => 'news'], function () {
     Route::get('add', 'NewsController@showAddForm')->name('news.add.form');
