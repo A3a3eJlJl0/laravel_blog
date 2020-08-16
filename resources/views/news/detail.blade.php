@@ -1,1 +1,1 @@
-{{$news[$currentCategory][$id]}}
+{{$item->text}}

@@ -10,11 +10,11 @@
 
 @section('content')
     <div class="category-list">
-    @foreach($news as $category => $value)
+    @foreach($categories as $category)
         <figure class="container-fluid">
-            <a class="category-caption" href="{{ route('news.category', $category) }}">
-                <img class="img-fluid category-img" src="{{ asset('img/' . $category . '.jpg') }}" alt="{{ $category }}">
-                <figcaption> {{ \App\Helpers\NewsHelper::translateCategory($category) }} </figcaption>
+            <a class="category-caption" href="{{ route('news.category', $category->id) }}">
+                <img class="img-fluid category-img" src="http://lorempixel.com/400/200" alt="{{ $category->category }}">
+                <figcaption> {{ $category->category }} </figcaption>
             </a>
         </figure>
     @endforeach

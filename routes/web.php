@@ -21,8 +21,8 @@ Route::group(['prefix' => 'news'], function () {
     Route::get('add', 'NewsController@showAddForm')->name('news.add.form');
     Route::post('add', 'NewsController@add')->name('news.add');
     Route::get('/', 'NewsController@showCategories')->name('news.categories');
-    Route::get('{category}/', 'NewsController@showAllFromCategory')->name('news.category');
-    Route::get('{category}/{id}', 'NewsController@showDetail')->name('news.category.id');
+    Route::get('{categoryId}/', 'NewsController@showAllFromCategory')->name('news.category');
+    Route::get('{categoryId}/{newsId}', 'NewsController@showDetail')->name('news.category.item');
 });
 
 Route::get('auth', 'AuthController@showForm')->name('auth.form');
