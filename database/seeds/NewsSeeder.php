@@ -1,5 +1,6 @@
 <?php
 
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use \Illuminate\Support\Facades\DB;
 
@@ -17,17 +18,24 @@ class NewsSeeder extends Seeder
 
     private function getData(): array
     {
-        $faker = Faker\Factory::create('ru_RU');
+        $faker = Factory::create('ru_RU');
 
         $data = [];
 
-        for ($i = 0; $i < 10; $i++) {
-            $data[] = [
-                'title' => $faker->sentence(rand(3, 10)),
-                'text' => $faker->realText(rand(100, 200)),
-                'is_private' => (boolean)(rand(0, 1)),
-            ];
-        }
+        $categories = DB::table('categories')->get();
+        $sources = DB::table('sources')->get();
+
+        $categories->each(function ($category) use ($faker, $sources){
+            $source = $sources->random();
+            for ($i = 0; $i < 10; $i++) {
+                $data[] = [
+                    'category_id' => $category['id'],
+                    'source_id' => $source['id'],
+                    'announce' => $faker->sentence(rand(3, 10)),
+                    'text' => $faker->realText(rand(100, 200)),
+                ];
+            }
+        });
         return $data;
     }
 }

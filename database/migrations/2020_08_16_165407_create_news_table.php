@@ -14,12 +14,14 @@ class CreateNewsTable extends Migration
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('category_id')->comment('Категория');
+            $table->integer('source_id')->comment('Источник новости');
             $table->string('title')->comment('Заголовок новости');
             $table->text('text')->comment('Текст новости');
-            $table->boolean('is_private')
-                ->default(true)
-                ->comment('Доступна ли новость для неавторизованных пользователей');
+
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('source_id')->references('id')->on('sources');
         });
     }
 
