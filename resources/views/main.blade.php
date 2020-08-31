@@ -14,19 +14,18 @@
 </head>
 <body>
     @section('menu')
-        <!-- Grey with black text -->
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item h4">
                     <a class="nav-link" href="{{ route('welcome') }}">Домашняя страница</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item h4">
                     <a class="nav-link" href="{{ route('news.categories') }}">Сплетни и слухи</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item h4">
                     <a class="nav-link" href="{{ route('news.add') }}">Добавить новость</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item h4">
                     <a class="nav-link" href="{{ route('auth.form') }}">Авторизация</a>
                 </li>
             </ul>
