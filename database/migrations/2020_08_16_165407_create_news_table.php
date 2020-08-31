@@ -15,8 +15,8 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->comment('Категория');
-            $table->integer('source_id')->comment('Источник новости');
+            $table->unsignedInteger('category_id')->comment('Категория');
+            $table->unsignedInteger('source_id')->comment('Источник новости');
             $table->string('title')->comment('Заголовок новости');
             $table->text('text')->comment('Текст новости');
 

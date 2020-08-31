@@ -23,7 +23,7 @@ class SourcesSeeder extends Seeder
         $faker = Factory::create('ru_RU');
 
         for($i = 0; $i < 10; $i++) {
-            $data[] = $faker->unique()->company;
+            $data[] = ['source' => $faker->unique()->company];
         }
 
         return $data;

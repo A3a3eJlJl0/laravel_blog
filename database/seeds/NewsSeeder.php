@@ -24,18 +24,17 @@ class NewsSeeder extends Seeder
 
         $categories = DB::table('categories')->get();
         $sources = DB::table('sources')->get();
-
-        $categories->each(function ($category) use ($faker, $sources){
-            $source = $sources->random();
+        foreach ($categories as $category) {
             for ($i = 0; $i < 10; $i++) {
+                $source = $sources->random();
                 $data[] = [
-                    'category_id' => $category['id'],
-                    'source_id' => $source['id'],
-                    'announce' => $faker->sentence(rand(3, 10)),
-                    'text' => $faker->realText(rand(100, 200)),
+                    'category_id' => $category->id,
+                    'source_id' => $source->id,
+                    'title' => $faker->sentence(rand(3, 10)),
+                    'text' => $faker->realText(rand(100, 200))
                 ];
             }
-        });
+        }
         return $data;
     }
 }
